@@ -68,17 +68,23 @@ class NameScreenUI extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 5),
-              RaisedButton(
-                highlightColor: Colors.blue[900],
-                elevation: 6.0,
+              ElevatedButton(
+                style: ButtonStyle(
+                  
+    backgroundColor: MaterialStateProperty.all(Colors.teal),
+    foregroundColor: MaterialStateProperty.all(Colors.white),
+    elevation:MaterialStateProperty.all(6),
+    
+                ),
+               
                 child: Text(
                   'NEXT',
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                color: Colors.blue[400],
+                // shape: RoundedRectangleBorder(
+                //   borderRadius: BorderRadius.circular(20),
+                // ),
+               // color: Colors.blue[400],
                 onPressed: () {
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) {

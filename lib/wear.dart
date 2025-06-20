@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';
+import 'package:wear_plus/wear_plus.dart';
 
 const MethodChannel _channel = const MethodChannel('wear');
 
@@ -21,14 +22,14 @@ enum Mode { active, ambient }
 
 /// An inherited widget that holds the shape of the Watch
 class InheritedShape extends InheritedWidget {
-  const InheritedShape({Key key, @required this.shape, @required Widget child})
+  const InheritedShape({Key? key, required this.shape, required Widget child})
       : assert(shape != null),
         assert(child != null),
         super(key: key, child: child);
 
   final Shape shape;
 
-  static InheritedShape of(BuildContext context) {
+  static InheritedShape? of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<InheritedShape>();
   }
 
@@ -39,12 +40,12 @@ class InheritedShape extends InheritedWidget {
 /// Builds a child for a WatchFaceBuilder
 typedef Widget WatchShapeBuilder(
   BuildContext context,
-  Shape shape,
+  Shape? shape,
 );
 
 /// Builder widget for watch shapes
 class WatchShape extends StatefulWidget {
-  WatchShape({Key key, @required this.builder})
+  WatchShape({Key? key, required this.builder})
       : assert(builder != null),
         super(key: key);
   final WatchShapeBuilder builder;
@@ -54,7 +55,7 @@ class WatchShape extends StatefulWidget {
 }
 
 class _WatchShapeState extends State<WatchShape> {
-  Shape shape;
+  Shape? shape;
 
   @override
   initState() {
@@ -98,11 +99,11 @@ typedef Widget AmbientModeWidgetBuilder(
 /// called every time the watch triggers an ambient update request. If an update
 /// function is passed in, this widget will not perform an update itself.
 class AmbientMode extends StatefulWidget {
-  AmbientMode({Key key, @required this.builder, this.update})
+  AmbientMode({Key? key, required this.builder,Function? this.update})
       : assert(builder != null),
         super(key: key);
   final AmbientModeWidgetBuilder builder;
-  final Function update;
+  final Function? update;
 
   @override
   createState() => _AmbientModeState();
@@ -122,7 +123,7 @@ class _AmbientModeState extends State<AmbientMode> {
           break;
         case 'update':
           if (widget.update != null)
-            widget.update();
+            widget.update!();
           else
             setState(() => ambientMode = Mode.ambient);
           break;
@@ -130,6 +131,7 @@ class _AmbientModeState extends State<AmbientMode> {
           setState(() => ambientMode = Mode.active);
           break;
       }
+      throw '';
     });
   }
 

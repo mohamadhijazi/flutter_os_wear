@@ -11,7 +11,7 @@ class StartScreen extends StatelessWidget {
       body: WatchShape(
         builder: (context, shape) {
           var screenSize = MediaQuery.of(context).size;
-          final shape = InheritedShape.of(context).shape;
+          final shape = InheritedShape.of(context)!.shape;
           if (shape == Shape.round) {
             // boxInsetLength requires radius, so divide by 2
             screenSize = Size(boxInsetLength(screenSize.width / 2),
@@ -31,17 +31,24 @@ class StartScreen extends StatelessWidget {
                 children: <Widget>[
                   FlutterLogo(size: 90),
                   SizedBox(height: 10),
-                  RaisedButton(
-                    highlightColor: Colors.blue[900],
-                    elevation: 6.0,
+                  ElevatedButton(
+                    style: ButtonStyle(
+                  overlayColor: MaterialStateProperty.all(Colors.blue[900]),
+    backgroundColor: MaterialStateProperty.all(Colors.teal),
+    foregroundColor: MaterialStateProperty.all(Colors.white),
+    elevation:MaterialStateProperty.all(6),
+    
+                ),
+                   // highlightColor: Colors.blue[900],
+                //    elevation: 6.0,
                     child: Text(
                       'START',
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    color: Colors.blue[400],
+                    // shape: RoundedRectangleBorder(
+                    //   borderRadius: BorderRadius.circular(20),
+                    // ),
+                    // color: Colors.blue[400],
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) {
