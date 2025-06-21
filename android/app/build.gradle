@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace  "com.souvikbiswas.flutter_os_wear"
+    namespace  "com.Mhijazi226.flutter_os_wear_timer"
     compileSdkVersion 35
 compileOptions {
         sourceCompatibility JavaVersion.VERSION_21
@@ -16,7 +16,7 @@ compileOptions {
         jvmTarget = "21"
     }
     defaultConfig {
-        applicationId "com.souvikbiswas.flutter_os_wear"
+        applicationId "com.Mhijazi226.flutter_os_wear_timer"
         minSdkVersion 23
         targetSdkVersion 34
         versionCode 1

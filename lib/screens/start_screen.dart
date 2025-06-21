@@ -1,9 +1,72 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_os_wear/screens/name_screen.dart';
+import 'package:flutter/material.dart'; 
 import 'package:flutter_os_wear/utils.dart';
 import 'package:flutter_os_wear/wear.dart';
-
+import 'dart:async';
+import 'package:vibration/vibration.dart';
 class StartScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(home: ColorChanger());
+  }
+}
+
+class ColorChanger extends StatefulWidget {
+  @override
+  _ColorChangerState createState() => _ColorChangerState();
+}
+class _ColorChangerState extends State<ColorChanger> {
+            Color _boxColor = Colors.grey;
+            String _text = "0";
+            int count=0;
+            var timerstatus=false;
+            late Timer _timer;
+   void _changeBox() {
+              setState(() {
+                if(_timer.isActive){
+                   _timer.cancel();
+                 }
+                 else{_startTimer();}
+                timerstatus=!timerstatus;
+              });
+            }
+
+            @override
+  void initState() {
+    super.initState();
+    _startTimer();
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(Duration(seconds: 900), (timer) {
+      try {
+    setState(() {
+       setState(() {
+        Vibration.vibrate(pattern: [0, 500, 250, 1000]);
+
+        count++;
+        _text = "${count }";
+      });
+    });
+  } catch (e, stack) {
+     setState(() {
+       setState(() {
+        count++;
+        _text = " error ${count }";
+      });
+    });
+  }
+     
+    });
+  }
+
+  @override
+  void dispose() {
+    setState(() {
+        _text = "Cancelled ${count + 1}";
+      });
+    _timer.cancel();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,8 +81,9 @@ class StartScreen extends StatelessWidget {
                 boxInsetLength(screenSize.height / 2));
           }
           var screenHeight = screenSize.height;
-          var screenWidth = screenSize.width;
+          var screenWidth = screenSize.width;       
 
+           
           return Center(
             child: Container(
               color: Colors.white,
@@ -29,7 +93,15 @@ class StartScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
-                  FlutterLogo(size: 90),
+                  Container(
+              padding: EdgeInsets.all(16),
+              color: _boxColor,
+              child: Text(
+                _text,
+                style: TextStyle(fontSize: 20, color: Colors.white),
+              ),
+            ),
+                  //FlutterLogo(size: 90),
                   SizedBox(height: 10),
                   ElevatedButton(
                     style: ButtonStyle(
@@ -49,13 +121,15 @@ class StartScreen extends StatelessWidget {
                     //   borderRadius: BorderRadius.circular(20),
                     // ),
                     // color: Colors.blue[400],
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) {
-                          return NameScreen(screenHeight, screenWidth);
-                        }),
-                      );
-                    },
+                    onPressed: _changeBox,
+                    // onPressed: () {
+                    
+                    //   Navigator.of(context).push(
+                    //     MaterialPageRoute(builder: (context) {
+                    //       return NameScreen(screenHeight, screenWidth);
+                    //     }),
+                    //   );
+                    // },
                   )
                 ],
               ),

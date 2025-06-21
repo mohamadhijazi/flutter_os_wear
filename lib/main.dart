@@ -10,7 +10,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
-        title: 'Flutter Wear App',
+        title: 'Timer Wear App',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),

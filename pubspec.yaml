@@ -18,13 +18,13 @@ environment:
 
 dependencies:
   wear_plus: ^1.2.3
+  vibration: ^3.1.3
   flutter:
     sdk: flutter
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.1
-  audioplayers: ^6.3.0
 
 dev_dependencies:
   flutter_test:

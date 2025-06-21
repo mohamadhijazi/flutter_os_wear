@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.souvikbiswas.flutter_os_wear">
+    package="com.Mhijazi226.flutter_os_wear_timer">
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.
          In most cases you can leave this as-is, but you if you want to provide
@@ -8,6 +8,9 @@
 
     <!-- Required for ambient mode support -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
     
     <!-- Flags the app as a Wear app -->
     <uses-feature android:name="android.hardware.type.watch" />
@@ -22,7 +25,7 @@
 
     <application
         android:name="${applicationName}"
-        android:label="flutter_os_wear"
+        android:label="Timer_os_wear"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

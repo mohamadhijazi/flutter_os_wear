@@ -10,7 +10,7 @@ class AmbientWatchFace extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                'FlutterOS',
+                'Flutter Timer',
                 style: TextStyle(color: Colors.blue[600], fontSize: 30),
               ),
               SizedBox(height: 15),
