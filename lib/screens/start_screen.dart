@@ -3,6 +3,7 @@ import 'package:flutter_os_wear/utils.dart';
 import 'package:flutter_os_wear/wear.dart';
 import 'dart:async';
 import 'package:vibration/vibration.dart';
+import 'package:vibration/vibration_presets.dart';
 class StartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -37,11 +38,11 @@ class _ColorChangerState extends State<ColorChanger> {
   }
 
   void _startTimer() {
-    _timer = Timer.periodic(Duration(seconds: 900), (timer) {
+    _timer = Timer.periodic(Duration(minutes: 15), (timer) {
       try {
     setState(() {
        setState(() {
-        Vibration.vibrate(pattern: [0, 500, 250, 1000]);
+        Vibration.vibrate(preset: VibrationPreset.quickSuccessAlert);
 
         count++;
         _text = "${count }";
@@ -70,7 +71,7 @@ class _ColorChangerState extends State<ColorChanger> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       body: WatchShape(
         builder: (context, shape) {
           var screenSize = MediaQuery.of(context).size;
@@ -86,7 +87,7 @@ class _ColorChangerState extends State<ColorChanger> {
            
           return Center(
             child: Container(
-              color: Colors.white,
+              color: Colors.black,
               height: screenSize.height,
               width: screenSize.width,
               child: Column(

@@ -10,17 +10,13 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <uses-permission android:name="android.permission.VIBRATE"/>
-
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     
     <!-- Flags the app as a Wear app -->
     <uses-feature android:name="android.hardware.type.watch" />
     
     <!-- Flags that the app doesn't require a companion phone app -->
-    <application>
-    <meta-data
-        android:name="com.google.android.wearable.standalone"
-        android:value="true" />
-    </application>
+    
 
 
     <application
@@ -45,5 +41,8 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+             <meta-data
+        android:name="com.google.android.wearable.standalone"
+        android:value="true" />
     </application>
 </manifest>

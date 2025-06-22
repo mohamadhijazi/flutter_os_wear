@@ -2,10 +2,10 @@
     package="com.Mhijazi226.flutter_os_wear_timer">
     <!-- Flutter needs it to communicate with the running application
          to allow setting breakpoints, to provide hot reload, etc.
-    -->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    --> 
     <!-- Required for ambient mode support -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
     
     <!-- Flags the app as a Wear app -->
     <uses-feature android:name="android.hardware.type.watch" />
