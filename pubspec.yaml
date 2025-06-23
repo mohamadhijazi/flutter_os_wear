@@ -19,6 +19,8 @@ environment:
 dependencies:
   wear_plus: ^1.2.3
   vibration: ^3.1.3
+  workmanager: ^0.5.1
+  shared_preferences: ^2.2.2
   flutter:
     sdk: flutter
 
